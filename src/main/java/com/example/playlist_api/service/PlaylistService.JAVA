@@ -11,15 +11,15 @@ import org.springframework.stereotype.Service; // this import is necessary for t
 public class PlaylistService {
 
     @Autowired
-    private  PlaylistRepository playlistRepository;
+    private PlaylistRepository playlistRepository;
 
     // fetch all playlists
     public List<Playlist> getAllPlaylists() {
         return playlistRepository.findAll();
     }
 
-    public Playlist getPlaylistByName(String name) {
-        return playlistRepository.findByName(name);
+    public Playlist getPlaylistById(Long Id) {
+        return playlistRepository.findById(Id).orElse(null);
     }
 
     public void addSongToPlaylist(String playlistName, Song song) {
@@ -36,8 +36,8 @@ public class PlaylistService {
     }
 
     // update an existing playlist
-    public Playlist updatePlaylist(String name, Playlist updatedPlaylist) {
-        Playlist playlist = playlistRepository.findByName(name);
+    public Playlist updatePlaylist(Long Id, Playlist updatedPlaylist) {
+        Playlist playlist = playlistRepository.findById(Id).orElse(null);
         if (playlist != null) {
             playlist.setName(updatedPlaylist.getName());
             playlist.setSongs(updatedPlaylist.getSongs());
@@ -46,8 +46,8 @@ public class PlaylistService {
         return null;
     }
 
-    // delete a playlist by name
-    public void deletePlaylistByName(String name) {
-        playlistRepository.deleteByName(name);
+    // delete a playlist by ID
+    public void deletePlaylistById(Long Id) {
+        playlistRepository.deleteById(Id);
     }
 }
