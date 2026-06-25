@@ -8,5 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface PlaylistRepository extends JpaRepository<Playlist, Long> {
     
      // Custom query method to find a playlist by its name as user isnt expected to know the id of the playlist
+     Playlist findByName(String name);
+     void deleteByName(String name); // Custom delete method to delete a playlist by its name
      
 }
