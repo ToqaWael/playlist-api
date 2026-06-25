@@ -1,3 +1,5 @@
+package com.example.playlist_api.model;
+
 import java.util.List;
 import jakarta.persistence.*;
 
